@@ -51,70 +51,16 @@ public class MicroController {
 
     @RequestMapping("/lb")
     public ServiceInstance lb() {
-        return this.loadBalancerClient.choose(environment.getProperty("spring.application.name"));
+        return this.loadBalancerClient.choose(
+                environment.getProperty("spring.application.name")
+        );
     }
 
     @RequestMapping("/instances")
     public List<ServiceInstance> instances() {
-        return this.discoveryClient.getInstances(environment.getProperty("spring.application.name"));
+        return this.discoveryClient.getInstances(
+                environment.getProperty("spring.application.name")
+        );
     }
-
-//
-//    @RequestMapping("/rest")
-//    public String rest() {
-//        return this.restTemplate.getForObject("http://" + this.appName + "/me",
-//                String.class);
-//    }
-//
-//    @RequestMapping("/choose")
-//    public String choose() {
-//        return this.loadBalancer.choose(this.appName).getUri().toString();
-//    }
-//
-//    @RequestMapping("/myenv")
-//    public String env(@RequestParam("prop") String prop) {
-//        return this.env.getProperty(prop, "Not Found");
-//    }
-//
-//    @RequestMapping("/prop")
-//    public String prop() {
-//        return sampleProperties().getProp();
-//    }
-//
-
-//
-//    /*
-//     * @Bean public SubtypeModule sampleSubtypeModule() { return new
-//     * SubtypeModule(SimpleRemoteEvent.class); }
-//     */
-//
-//    @RequestMapping("/feign")
-//    public String feign() {
-//        return this.sampleClient.choose();
-//    }
-//
-//    @Bean
-//    public SampleProperties sampleProperties() {
-//        return new SampleProperties();
-//    }
-//
-//    @Bean
-//    @LoadBalanced
-//    public RestTemplate restTemplate() {
-//        return new RestTemplate();
-//    }
-//
-//    /*
-//     * @Override public void onApplicationEvent(SimpleRemoteEvent event) {
-//     * log.info("Received event: {}", event); }
-//     */
-//
-//    @FeignClient("testConsulApp")
-//    public interface SampleClient {
-//
-//        @RequestMapping(value = "/choose", method = RequestMethod.GET)
-//        String choose();
-//
-//    }
 
 }

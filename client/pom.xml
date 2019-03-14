@@ -15,5 +15,19 @@
 			<groupId>com.example.colud.micro</groupId>
 			<artifactId>micro-consul-common</artifactId>
 		</dependency>
+
+		<!-- begin feign -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+		<!-- end feign -->
+
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.cloud</groupId>-->
+			<!--<artifactId>spring-cloud-netflix-core</artifactId>-->
+		<!--</dependency>-->
+
 	</dependencies>
 </project>
