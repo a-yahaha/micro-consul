@@ -1,0 +1,57 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: micro-consul
+  cloud:
+    consul:
+      config:
+        # enabled为true表示启用配置管理功能
+        enabled: true
+        #配置文件的前缀文件夹名, 配置所在的应用目录名称
+        prefix: service
+        profileSeparator: '/'
+        # watch选项为配置监视功能，主要监视配置的改变
+        watch:
+          enabled: true
+          delay: 5000
+        data-key: config
+        format: yaml
+        default-context: ${spring.application.name}
+      # consul服务器地址
+      host: localhost
+      # consul服务端口
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        # 执行监控检查的频率
+        health-check-interval: 15s
+        # 健康检查的路径
+        health-check-path: /actuator/health
+        # 服务注册标识，格式为：应用名称+服务器IP+端口
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        tags: ${spring.profiles.active}
+        # 启用服务注册
+        register: true
+        # 服务停止时取消注册 需要监控服务，业务
+        deregister: false
+        # 启用服务发现
+        enabled: true
+        # 表示注册时使用IP而不是hostname
+        prefer-ip-address: true
+
+logging:
+  path: /var/www/logs/${spring.application.name}.log
+  file:
+    max-history: 7
+    max-size: 20MB
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+
