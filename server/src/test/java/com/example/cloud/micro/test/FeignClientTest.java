@@ -23,7 +23,7 @@ public class FeignClientTest {
 
     @Test
     public void testClient() {
-        for (int i = 0; i < 10; i ++) {
+        for (int i = 0; i < 6; i ++) {
             System.out.println(microConsulClient.hello());
         }
     }

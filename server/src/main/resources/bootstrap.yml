@@ -39,6 +39,9 @@ spring:
         enabled: true
         # 表示注册时使用IP而不是hostname
         prefer-ip-address: true
+      ribbon:
+        #重写了服务发现逻辑,因此以前的发现策略要关闭
+        enabled: false
 
 logging:
   path: /var/www/logs/${spring.application.name}.log
@@ -54,4 +57,3 @@ management:
     health:
       enabled: true
       show-details: always
-

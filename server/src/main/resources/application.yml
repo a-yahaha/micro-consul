@@ -2,3 +2,7 @@
 micro:
   service:
     token: 121314
+
+micro-consul:
+  service:
+    tag: test
